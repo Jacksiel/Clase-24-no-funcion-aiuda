@@ -1,0 +1,33 @@
+class Cannon {
+  constructor(x, y, width, height, angle) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.angle = angle;
+    this.cannon_image = loadImage("canon.png");
+    this.cannon_base = loadImage("cannonBase.png");
+  }
+  display() {
+
+    //Para que el cañon se mueva grado por grado
+    if(keyIsDown(RIGHT_ARROW) && this.angle<70 ){
+      this.angle += 1;
+    }
+    if(keyIsDown(LEFT_ARROW)  && this.angle>-30){
+      this.angle -= 1;
+    }
+
+    push();
+    //translate es molde para poner datos en sketch
+    translate(this.x, this.y);
+    rotate(this.angle);
+    imageMode(CENTER);
+    image(this.cannon_image, 0, 0, this.width, this.height);
+    pop();
+    image(this.cannon_base,70, 20, 200, 200);
+    //que no rellene el cuadro donde se 
+    //creó el cañon y así solo usamos la imagen del cañón
+    noFill();
+  }
+}
